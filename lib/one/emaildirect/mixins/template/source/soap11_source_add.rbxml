@@ -1,0 +1,10 @@
+<?rb import "#{File.dirname(__FILE__)}/../soap11_header.rbxml" ?>
+
+  <Source_Add xmlns="http://espapi.net/v1/">
+    <?rb import "#{File.dirname(__FILE__)}/../soap11_credentials.rbxml" ?>
+
+    <ElementName>${ @source_name }</ElementName>
+    <Description>${ @source_description }</Description>
+  </Source_Add>
+
+<?rb import "#{File.dirname(__FILE__)}/../soap11_footer.rbxml" ?>

@@ -1,0 +1,26 @@
+<?rb import "#{File.dirname(__FILE__)}/../soap11_header.rbxml" ?>
+
+    <Email_Add xmlns="http://espapi.net/v1/">
+      <?rb import "#{File.dirname(__FILE__)}/../soap11_credentials.rbxml" ?>
+
+      <Email>${ @email }</Email>
+      <SourceID>${ @source_id }</SourceID>
+      <?rb if !@publications.empty? ?>
+      <Publications>
+        <?rb for publication in @publications ?>
+        <int>${ publication }</int>
+        <?rb end  ?>
+      </Publications>
+      <?rb end ?>
+      <?rb if !@lists.empty? ?>
+      <Lists>
+        <?rb for list in @lists ?>
+        <int>${ list }</int>
+        <?rb end  ?>
+      </Lists>
+      <?rb end ?>
+      <AutoResponderID>${ @autoresponder_id }</AutoResponderID>
+      <Force>${ @force }</Force>
+    </Email_Add>
+
+<?rb import "#{File.dirname(__FILE__)}/../soap11_footer.rbxml" ?>

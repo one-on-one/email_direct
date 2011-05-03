@@ -1,0 +1,9 @@
+# all
+**/*.gem
+**/.rakeTasks
+**/Gemfile.lock
+**/log/*.log
+**/**/development.yaml
+**/**/production.yaml
+**/**/*.tch
+**/**/*.rbxml.cache
