@@ -10,15 +10,15 @@ require 'tenjin'
 module One
   module EmailDirect
     module Mixins
-      autoload :EmailFacade, "#{File.dirname(__FILE__)}/one/emaildirect/mixins/email"
-      autoload :ListFacade, "#{File.dirname(__FILE__)}/one/emaildirect/mixins/list"
-      autoload :PublicationFacade, "#{File.dirname(__FILE__)}/one/emaildirect/mixins/publication"
-      autoload :SourceFacade, "#{File.dirname(__FILE__)}/one/emaildirect/mixins/source"
+      autoload :EmailFacade, "#{File.dirname(__FILE__)}/one/email_direct/mixins/email"
+      autoload :ListFacade, "#{File.dirname(__FILE__)}/one/email_direct/mixins/list"
+      autoload :PublicationFacade, "#{File.dirname(__FILE__)}/one/email_direct/mixins/publication"
+      autoload :SourceFacade, "#{File.dirname(__FILE__)}/one/email_direct/mixins/source"
     end
 
-    autoload :Client, "#{File.dirname(__FILE__)}/one/emaildirect/client"
-    autoload :Credentials, "#{File.dirname(__FILE__)}/one/emaildirect/credentials"
-    autoload :Facade, "#{File.dirname(__FILE__)}/one/emaildirect/facade"
+    autoload :Client, "#{File.dirname(__FILE__)}/one/email_direct/client"
+    autoload :Credentials, "#{File.dirname(__FILE__)}/one/email_direct/credentials"
+    autoload :Facade, "#{File.dirname(__FILE__)}/one/email_direct/facade"
 
   end
 end
