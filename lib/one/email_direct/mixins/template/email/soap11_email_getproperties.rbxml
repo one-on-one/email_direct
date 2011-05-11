@@ -1,0 +1,9 @@
+<?rb import "#{File.dirname(__FILE__)}/../soap11_header.rbxml" ?>
+
+  <Email_GetProperties xmlns="http://espapi.net/v1/">
+    <?rb import "#{File.dirname(__FILE__)}/../soap11_credentials.rbxml" ?>
+
+    <Email>${ @email }</Email>
+  </Email_GetProperties>
+
+<?rb import "#{File.dirname(__FILE__)}/../soap11_footer.rbxml" ?>
