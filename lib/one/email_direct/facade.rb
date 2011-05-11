@@ -55,8 +55,8 @@ class One::EmailDirect::Facade
       # TODO validate versions
       # TODO log method and context
       action = context.has_key?(:soap_action) ? context[:soap_action] : nil
-      client = One::EmailDirect::Client.new
-      client.http.headers['SOAPAction'] = action
+      client = One::EmailDirect::Client.new action
+      #client.http.headers['SOAPAction'] = action
       response = client.request method do |soap|
         soap.xml = create_soap_envelope(method, context)
         # TODO log soap envelope @ debug level
