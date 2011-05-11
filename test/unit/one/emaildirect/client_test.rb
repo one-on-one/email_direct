@@ -5,7 +5,8 @@ require "#{File.dirname(__FILE__)}/helpers/requires"
 class TestClient < Test::Unit::TestCase
 
   def setup()
-
+    config = Steenzout::ConfigurationManager.configuration_for_gem :'one-emaildirect'
+    @credentials = One::EmailDirect::Credentials.create_from config
   end
 
   def teardown()
@@ -35,7 +36,7 @@ class TestClient < Test::Unit::TestCase
       </Creds>
     </Publication_GetAll>
   </soap:Body>
-</soap:Envelope>' % ['oootest', 'qU34Lsj+2a8&lt;H6cQrbXK']
+</soap:Envelope>' % [credentials.account, credentials.password]
     end
 
     p 'response'
