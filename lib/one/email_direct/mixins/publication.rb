@@ -48,7 +48,7 @@ module One::EmailDirect::Mixins::PublicationFacade
   # @return [Hash] a hash that describes the publication.
   #
   def publication_get(credentials, name)
-    publication_get_all(credentials).each {|element| return element if element[:element_name] == name}
+    publication_getall(credentials).each {|element| return element if element[:element_name] == name}
     nil
   end
 
@@ -63,9 +63,9 @@ module One::EmailDirect::Mixins::PublicationFacade
   # @return [Array] all of the publications.
   #                 [{:description=>"a description.", :element_name=>"name12353", :element_id=>"170"}, ...]
   #
-  def publication_get_all(credentials)
+  def publication_getall(credentials)
     response = send_soap(
-      :publication_get_all,
+      :publication_getall,
       {:soap_action => 'http://espapi.net/v1/Publication_GetAll',
        :credentials => credentials}
     )

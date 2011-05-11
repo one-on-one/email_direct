@@ -15,13 +15,13 @@ class TestListFacade < Test::Unit::TestCase
 
 
     uuid2 = generator.generate(:compact)
-    @list_get_all1 = {:name => "name#{uuid2}", :description => "description#{uuid2}"}
+    @list_getall1 = {:name => "name#{uuid2}", :description => "description#{uuid2}"}
 
     uuid3 = generator.generate(:compact)
-    @list_get_all2 = {:name => "name#{uuid3}", :description => "description#{uuid3}"}
+    @list_getall2 = {:name => "name#{uuid3}", :description => "description#{uuid3}"}
 
     uuid4 = generator.generate(:compact)
-    @list_get_all3 = {:name => "name#{uuid4}", :description => "description#{uuid4}"}
+    @list_getall3 = {:name => "name#{uuid4}", :description => "description#{uuid4}"}
 
 
     uuid5 = generator.generate(:compact)
@@ -29,13 +29,13 @@ class TestListFacade < Test::Unit::TestCase
   end
 
   def teardown()
-    One::EmailDirect::Facade.list_get_all(@credentials).each {|element|
+    One::EmailDirect::Facade.list_getall(@credentials).each {|element|
       One::EmailDirect::Facade.list_delete(@credentials, element[:element_id])
     }
   end
 
   def get_single_list(list_name)
-    One::EmailDirect::Facade.list_get_all(@credentials).each {|element|
+    One::EmailDirect::Facade.list_getall(@credentials).each {|element|
       return element if element[:element_name] == list_name
     }
     nil
@@ -97,55 +97,55 @@ class TestListFacade < Test::Unit::TestCase
 
 
 
-  # Tests for One::EmailDirect::Facade.list_get_all.
+  # Tests for One::EmailDirect::Facade.list_getall.
   #
   # 1. no lists
   # 2. one list
   # 3. two lists
   # 4. three lists
   #
-  def test_list_get_all()
+  def test_list_getall()
     # 1. no lists
-    assert_equal [], One::EmailDirect::Facade.list_get_all(@credentials)
+    assert_equal [], One::EmailDirect::Facade.list_getall(@credentials)
 
 
     # 2. one list
-    One::EmailDirect::Facade.list_add(@credentials, @list_get_all1[:name], @list_get_all1[:description])
-    result = One::EmailDirect::Facade.list_get_all(@credentials)
+    One::EmailDirect::Facade.list_add(@credentials, @list_getall1[:name], @list_getall1[:description])
+    result = One::EmailDirect::Facade.list_getall(@credentials)
     expected = [{
-        :element_name => @list_get_all1[:name],
-        :description => @list_get_all1[:description]
+        :element_name => @list_getall1[:name],
+        :description => @list_getall1[:description]
     }]
     result.collect! {|element| element.delete(:element_id); element} # remove ids
     assert_equal expected, result
 
 
     # 3. two lists
-    One::EmailDirect::Facade.list_add(@credentials, @list_get_all2[:name], @list_get_all2[:description])
-    result = One::EmailDirect::Facade.list_get_all(@credentials)
+    One::EmailDirect::Facade.list_add(@credentials, @list_getall2[:name], @list_getall2[:description])
+    result = One::EmailDirect::Facade.list_getall(@credentials)
     expected = [{
-        :element_name => @list_get_all1[:name],
-        :description => @list_get_all1[:description]
+        :element_name => @list_getall1[:name],
+        :description => @list_getall1[:description]
     }, {
-        :element_name => @list_get_all2[:name],
-        :description => @list_get_all2[:description]
+        :element_name => @list_getall2[:name],
+        :description => @list_getall2[:description]
     }]
     result.collect! {|element| element.delete(:element_id); element} # remove ids
     assert_equal expected, result
 
 
     # 4. three lists
-    One::EmailDirect::Facade.list_add(@credentials, @list_get_all3[:name], @list_get_all3[:description])
-    result = One::EmailDirect::Facade.list_get_all(@credentials)
+    One::EmailDirect::Facade.list_add(@credentials, @list_getall3[:name], @list_getall3[:description])
+    result = One::EmailDirect::Facade.list_getall(@credentials)
     expected = [{
-        :element_name => @list_get_all1[:name],
-        :description => @list_get_all1[:description]
+        :element_name => @list_getall1[:name],
+        :description => @list_getall1[:description]
     }, {
-        :element_name => @list_get_all2[:name],
-        :description => @list_get_all2[:description]
+        :element_name => @list_getall2[:name],
+        :description => @list_getall2[:description]
     }, {
-        :element_name => @list_get_all3[:name],
-        :description => @list_get_all3[:description]
+        :element_name => @list_getall3[:name],
+        :description => @list_getall3[:description]
     }]
     result.collect! {|element| element.delete(:element_id); element} # remove ids
     assert_equal expected, result

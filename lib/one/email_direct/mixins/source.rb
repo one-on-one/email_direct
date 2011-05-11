@@ -48,7 +48,7 @@ module One::EmailDirect::Mixins::SourceFacade
   # @return [Hash] a hash that describes the source.
   #
   def source_get(credentials, name)
-    source_get_all(credentials).each {|element| return element if element[:element_name] == name}
+    source_getall(credentials).each {|element| return element if element[:element_name] == name}
     nil
   end
 
@@ -62,9 +62,9 @@ module One::EmailDirect::Mixins::SourceFacade
   #
   # @return [Hash]  TODO {:description=>"a description.", :element_name=>"name12353", :element_id=>"170"}
   #
-  def source_get_all(credentials)
+  def source_getall(credentials)
     response = send_soap(
-      :source_get_all,
+      :source_getall,
       {:soap_action => 'http://espapi.net/v1/Source_GetAll',
        :credentials => credentials}
     )

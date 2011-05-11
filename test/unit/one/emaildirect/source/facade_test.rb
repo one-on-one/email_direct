@@ -14,13 +14,13 @@ class TestSourceFacade < Test::Unit::TestCase
 
 
     uuid2 = generator.generate(:compact)
-    @source_get_all1 = {:name => "name#{uuid2}", :description => "description#{uuid2}"}
+    @source_getall1 = {:name => "name#{uuid2}", :description => "description#{uuid2}"}
 
     uuid3 = generator.generate(:compact)
-    @source_get_all2 = {:name => "name#{uuid3}", :description => "description#{uuid3}"}
+    @source_getall2 = {:name => "name#{uuid3}", :description => "description#{uuid3}"}
 
     uuid4 = generator.generate(:compact)
-    @source_get_all3 = {:name => "name#{uuid4}", :description => "description#{uuid4}"}
+    @source_getall3 = {:name => "name#{uuid4}", :description => "description#{uuid4}"}
 
 
     uuid5 = generator.generate(:compact)
@@ -28,13 +28,13 @@ class TestSourceFacade < Test::Unit::TestCase
   end
 
   def teardown()
-    One::EmailDirect::Facade.source_get_all(@credentials).each {|element|
+    One::EmailDirect::Facade.source_getall(@credentials).each {|element|
       One::EmailDirect::Facade.source_delete(@credentials, element[:element_id])
     }
   end
 
   def get_single_source(source_name)
-    One::EmailDirect::Facade.source_get_all(@credentials).each {|element|
+    One::EmailDirect::Facade.source_getall(@credentials).each {|element|
       return element if element[:element_name] == source_name
     }
     nil
@@ -96,55 +96,55 @@ class TestSourceFacade < Test::Unit::TestCase
 
 
 
-  # Tests for One::EmailDirect::Facade.source_get_all.
+  # Tests for One::EmailDirect::Facade.source_getall.
   #
   # 1. no sources
   # 2. one source
   # 3. two sources
   # 4. three sources
   #
-  def test_source_get_all()
+  def test_source_getall()
     # 1. no sources
-    assert_equal [], One::EmailDirect::Facade.source_get_all(@credentials)
+    assert_equal [], One::EmailDirect::Facade.source_getall(@credentials)
 
 
     # 2. one source
-    One::EmailDirect::Facade.source_add(@credentials, @source_get_all1[:name], @source_get_all1[:description])
-    result = One::EmailDirect::Facade.source_get_all(@credentials)
+    One::EmailDirect::Facade.source_add(@credentials, @source_getall1[:name], @source_getall1[:description])
+    result = One::EmailDirect::Facade.source_getall(@credentials)
     expected = [{
-        :element_name => @source_get_all1[:name],
-        :description => @source_get_all1[:description]
+        :element_name => @source_getall1[:name],
+        :description => @source_getall1[:description]
     }]
     result.collect! {|element| element.delete(:element_id); element} # remove ids
     assert_equal expected, result
 
 
     # 3. two sources
-    One::EmailDirect::Facade.source_add(@credentials, @source_get_all2[:name], @source_get_all2[:description])
-    result = One::EmailDirect::Facade.source_get_all(@credentials)
+    One::EmailDirect::Facade.source_add(@credentials, @source_getall2[:name], @source_getall2[:description])
+    result = One::EmailDirect::Facade.source_getall(@credentials)
     expected = [{
-        :element_name => @source_get_all1[:name],
-        :description => @source_get_all1[:description]
+        :element_name => @source_getall1[:name],
+        :description => @source_getall1[:description]
     }, {
-        :element_name => @source_get_all2[:name],
-        :description => @source_get_all2[:description]
+        :element_name => @source_getall2[:name],
+        :description => @source_getall2[:description]
     }]
     result.collect! {|element| element.delete(:element_id); element} # remove ids
     assert_equal expected, result
 
 
     # 4. three sources
-    One::EmailDirect::Facade.source_add(@credentials, @source_get_all3[:name], @source_get_all3[:description])
-    result = One::EmailDirect::Facade.source_get_all(@credentials)
+    One::EmailDirect::Facade.source_add(@credentials, @source_getall3[:name], @source_getall3[:description])
+    result = One::EmailDirect::Facade.source_getall(@credentials)
     expected = [{
-        :element_name => @source_get_all1[:name],
-        :description => @source_get_all1[:description]
+        :element_name => @source_getall1[:name],
+        :description => @source_getall1[:description]
     }, {
-        :element_name => @source_get_all2[:name],
-        :description => @source_get_all2[:description]
+        :element_name => @source_getall2[:name],
+        :description => @source_getall2[:description]
     }, {
-        :element_name => @source_get_all3[:name],
-        :description => @source_get_all3[:description]
+        :element_name => @source_getall3[:name],
+        :description => @source_getall3[:description]
     }]
     result.collect! {|element| element.delete(:element_id); element} # remove ids
     assert_equal expected, result

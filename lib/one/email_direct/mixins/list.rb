@@ -48,7 +48,7 @@ module One::EmailDirect::Mixins::ListFacade
   # @return [Hash] a hash that describes the list.
   #
   def list_get(credentials, name)
-    list_get_all(credentials).each {|element| return element if element[:element_name] == name}
+    list_getall(credentials).each {|element| return element if element[:element_name] == name}
     nil
   end
 
@@ -62,9 +62,9 @@ module One::EmailDirect::Mixins::ListFacade
   #
   # @return [Hash]  TODO {:description=>"a description.", :element_name=>"name12353", :element_id=>"170"}
   #
-  def list_get_all(credentials)
+  def list_getall(credentials)
     response = send_soap(
-      :list_get_all,
+      :list_getall,
       {:soap_action => 'http://espapi.net/v1/List_GetAll',
        :credentials => credentials}
     )
@@ -87,6 +87,8 @@ module One::EmailDirect::Mixins::ListFacade
     end
   end
 
+
+
   # Returns all subscribers associated to a list on the given EmailDirect account.
   #
   # @param credentials [One::EmailDirect::Credentials] EmailDirect API credentials.
@@ -98,9 +100,9 @@ module One::EmailDirect::Mixins::ListFacade
   #
   # @return [Hash]  TODO {:description=>"a description.", :element_name=>"name12353", :element_id=>"170"}
   #
-  def list_get_members(credentials, list_id, page_size, page_number)
+  def list_getmembers(credentials, list_id, page_size, page_number)
     response = send_soap(
-      :list_get_members,
+      :list_getmembers,
       {:soap_action => 'http://espapi.net/v1/List_GetMembers',
         :credentials => credentials,
         :list_id => list_id,

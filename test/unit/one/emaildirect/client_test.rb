@@ -21,7 +21,7 @@ class TestClient < Test::Unit::TestCase
 
     return
 
-    response = client.request :publication_get_all do |soap|
+    response = client.request :publication_getall do |soap|
       soap.xml = '<?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
