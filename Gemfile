@@ -1,8 +1,7 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
-gem 'erubis'
-gem 'steenzout-cfg'
 gem 'savon'
+gem 'steenzout-cfg'
 gem 'tenjin'
 gem 'uuid'
