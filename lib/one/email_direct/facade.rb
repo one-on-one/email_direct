@@ -24,8 +24,8 @@ class One::EmailDirect::Facade
           template_name = File.basename(template)[7..-7] # remove initial soapxy_ and final .rbxml
           @templates[template_name.to_sym] ||= {}
           @templates[template_name.to_sym][soap_version.to_i] = template
-          ## TODO move this to log file
-          puts "loaded template :#{template_name} => #{template}"
+          # TODO move this to log file
+          # TODO log puts "loaded template :#{template_name} => #{template}"
         }
       }
     end
@@ -33,7 +33,7 @@ class One::EmailDirect::Facade
     def self.create_soap_envelope(method, context)
       raise StandardError, 'There is not template for method %s!' % [method] if !self.templates.has_key? method
       view = Tenjin::Engine.new().render(self.templates[method][context[:soap_version]], context)
-      puts '%s\n\t%s' % [method, view]
+      # TODO log puts '%s\n\t%s' % [method, view]
       view
     end
 
@@ -59,7 +59,7 @@ class One::EmailDirect::Facade
       raise StandardError, 'Failed!\n\t%s' % [response] if !response.success?
       return response.to_hash["#{method}_response".to_sym]["#{method}_result".to_sym]
     rescue Savon::SOAP::Fault => fault
-      puts fault.to_s
+      # TODO puts fault.to_s
       raise fault
     end
 
