@@ -58,7 +58,7 @@ module One::EmailDirect::Mixins::ListFacade
   #
   # @param credentials [One::EmailDirect::Credentials] EmailDirect API credentials.
   #
-  # http://dev.emaildirect.com/v1/api.asmx?op=Publication_GetAll
+  # http://dev.emaildirect.com/v1/api.asmx?op=List_GetAll
   #
   # @return [Hash]  TODO {:description=>"a description.", :element_name=>"name12353", :element_id=>"170"}
   #

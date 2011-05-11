@@ -6,7 +6,7 @@ module One::EmailDirect::Mixins::SourceFacade
   # @param name [String] the source name.
   # @param description [String] the source description.
   #
-  # http://dev.emaildirect.com/v1/api.asmx?op=source_Add
+  # http://dev.emaildirect.com/v1/api.asmx?op=Source_Add
   #
   def source_add(credentials, name, description)
     response = send_soap(
@@ -26,7 +26,7 @@ module One::EmailDirect::Mixins::SourceFacade
   # @param credentials [One::EmailDirect::Credentials] EmailDirect API credentials.
   # @param source_id [Fixnum] the unique identifier of the source to be deleted.
   #
-  # http://dev.emaildirect.com/v1/api.asmx?op=source_Delete
+  # http://dev.emaildirect.com/v1/api.asmx?op=Source_Delete
   #
   def source_delete(credentials, source_id)
     response = send_soap(
