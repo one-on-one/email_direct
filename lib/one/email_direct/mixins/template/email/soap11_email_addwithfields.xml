@@ -1,0 +1,34 @@
+<?rb import "#{File.dirname(__FILE__)}/../soap11_header.rbxml" ?>
+
+    <Email_AddWithFields xmlns="http://espapi.net/v1/">
+      <?rb import "#{File.dirname(__FILE__)}/../soap11_credentials.rbxml" ?>
+
+      <Email>${ @email }</Email>
+      <SourceID>${ @source_id }</SourceID>
+      <?rb if !@publications.nil? and !@publications.empty? ?>
+      <Publications>
+        <?rb for publication in @publications ?>
+        <int>${ publication }</int>
+        <?rb end  ?>
+      </Publications>
+      <?rb end ?>
+      <?rb if !@lists.nil? and !@lists.empty? ?>
+      <Lists>
+        <?rb for list in @lists ?>
+        <int>${ list }</int>
+        <?rb end  ?>
+      </Lists>
+      <?rb end ?>
+      <AutoResponderID>${ @autoresponder }</AutoResponderID>
+      <Force>${ @force }</Force>
+      <CustomFields>
+        <?rb @custom_fields.each {|key, value| ?>
+        <CustomField>
+          <FieldName>${ key }</FieldName>
+          <Value>${ value }</Value>
+        </CustomField>
+        <?rb }  ?>
+      </CustomFields>
+    </Email_AddWithFields>
+
+<?rb import "#{File.dirname(__FILE__)}/../soap11_footer.rbxml" ?>

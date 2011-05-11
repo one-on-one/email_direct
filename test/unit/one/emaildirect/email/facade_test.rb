@@ -52,6 +52,12 @@ class TestEmailFacade < Test::Unit::TestCase
 
     @publication1 = One::EmailDirect::Facade.publication_get(@credentials, @publication1[:name])
     @publication2 = One::EmailDirect::Facade.publication_get(@credentials, @publication2[:name])
+
+    @custom_fields = {
+      'FirstName' => 'John',
+      'LastName' => 'Doe',
+      'Age' => 30
+    }
   end
 
   def teardown()
@@ -146,6 +152,86 @@ class TestEmailFacade < Test::Unit::TestCase
       @credentials, @email1,
       @source1[:element_id], [@publication1[:element_id]], [@list1[:element_id]],
       @autoresponder, @force
+    )
+  end
+
+
+
+  # Tests for One::EmailDirect::Facade.email_addwithfields.
+  #
+  # 1. create a new email
+  # 1.1 specifying all parameters (one list and one publication)
+  # 1.2 specifying all parameters (two lists and two publication)
+  # 1.3 with no list
+  # 1.4 with no list and publications
+  # 1.5 with no email
+  # 1.6 using a previously inserted email
+  #
+  def test_email_addwithfields()
+    # 1.1
+    assert_nil One::EmailDirect::Facade.email_addwithfields(
+        @credentials, @email1,
+        @source1[:element_id], [@publication1[:element_id]], [@list1[:element_id]],
+        @autoresponder, @force,
+        @custom_fields
+    )
+
+
+    # 1.2
+    assert_nil One::EmailDirect::Facade.email_addwithfields(
+        @credentials, @email2,
+        @source1[:element_id], [@publication1[:element_id], @publication2[:element_id]], [@list1[:element_id], @list2[:element_id]],
+        @autoresponder, @force,
+        @custom_fields
+    )
+
+
+    # 1.3
+    assert_nil One::EmailDirect::Facade.email_addwithfields(
+        @credentials, @email4,
+        @source1[:element_id], [@publication1[:element_id]], [],
+        @autoresponder, @force
+    )
+    assert_nil One::EmailDirect::Facade.email_addwithfields(
+        @credentials, @email5,
+        @source1[:element_id], [@publication1[:element_id]], nil,
+        @autoresponder, @force,
+        @custom_fields
+    )
+
+
+    # 1.4
+    assert_nil One::EmailDirect::Facade.email_addwithfields(
+        @credentials, @email6,
+        @source1[:element_id], [], [@list1[:element_id]],
+        @autoresponder, @force,
+        @custom_fields
+    )
+    assert_nil One::EmailDirect::Facade.email_addwithfields(
+        @credentials, @email7,
+        @source1[:element_id], nil, [@list1[:element_id]],
+        @autoresponder, @force,
+        @custom_fields
+    )
+
+
+    # 1.5
+    assert_raises StandardError do
+      One::EmailDirect::Facade.email_addwithfields(
+        @credentials, nil,
+        @source1[:element_id], [@publication1[:element_id]], [@list1[:element_id]],
+        @autoresponder, @force,
+        @custom_fields
+      )
+    end
+
+
+    # 1.6
+    assert_nil One::EmailDirect::Facade.email_addwithfields(
+      @credentials, @email1,
+      @source1[:element_id], [@publication1[:element_id]], [@list1[:element_id]],
+      @autoresponder, @force,
+      @custom_fields
     )
   end
 
