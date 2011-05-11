@@ -1,11 +1,11 @@
 class One::EmailDirect::Client < Savon::Client
 
-  def initialize(action=nil)
+  def initialize(soap_action=nil)
     super() do
       wsdl.document = 'lib/emaildirect.wsdl'
       http.proxy = 'http://dev.emaildirect.com/v1/api.asmx'
+      #http.headers['SOAPAction'] = %{"#{soap_action}"} if !soap_action.nil?
     end
-    @http.headers['SOAPAction'] = action if !action.nil?
   end
 
 end

@@ -32,6 +32,8 @@ module One::EmailDirect::Mixins::EmailFacade
     raise StandardError, '[%s] %s' % [response[:code], response[:message]] if response[:code] != '0'
   end
 
+
+
   # Creates a new email on the given EmailDirect account.
   #
   # @param credentials [One::EmailDirect::Credentials] EmailDirect API credentials.
@@ -51,10 +53,10 @@ module One::EmailDirect::Mixins::EmailFacade
   #
   # http://dev.emaildirect.com/v1/api.asmx?op=Email_AddWithFields
   #
-  def email_addwithfields(credentials, email, source_id, publications, lists, autoresponder=0, force=false, custom_fields={})
+  def email_add_with_fields(credentials, email, source_id, publications, lists, autoresponder=0, force=false, custom_fields={})
     # TODO: validate mandatory arguments and raise ArgumentError
     response = send_soap(
-      :email_add,
+      :email_addwithfields,
       {:soap_action => 'http://espapi.net/v1/Email_AddWithFields',
         :credentials => credentials,
         :email => email,
@@ -91,6 +93,34 @@ module One::EmailDirect::Mixins::EmailFacade
       }
     )
     raise StandardError, '[%s] %s' % [response[:code], response[:message]] if response[:code] != '0'
+  end
+
+
+
+  # Returns all all properties associated with an email address.
+  #
+  # @param credentials [One::EmailDirect::Credentials] EmailDirect API credentials.
+  #
+  # http://dev.emaildirect.com/v1/api.asmx?op=Email_GetProperties
+  #
+  # @return [Hash]  TODO {:description=>"a description.", :element_name=>"name12353", :element_id=>"170"}
+  #
+  def email_getproperties(credentials, email)
+    response = send_soap(
+      :email_getproperties,
+      {:soap_action => 'http://espapi.net/v1/Email_GetProperties',
+        :credentials => credentials,
+        :email => email
+      }
+    )
+
+    puts response
+
+    return response
+
+    # if it only has one element (Hash) you have to transform it to a single array element
+    return [response[:element]] if response[:element].instance_of? Hash
+
   end
 
 end

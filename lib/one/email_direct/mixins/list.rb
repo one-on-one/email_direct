@@ -54,7 +54,7 @@ module One::EmailDirect::Mixins::ListFacade
 
 
 
-  # Returns all list on the given EmailDirect account.
+  # Returns all lists on the given EmailDirect account.
   #
   # @param credentials [One::EmailDirect::Credentials] EmailDirect API credentials.
   #

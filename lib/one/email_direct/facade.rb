@@ -30,12 +30,16 @@ class One::EmailDirect::Facade
       }
     end
 
+
+
     def self.create_soap_envelope(method, context)
       raise StandardError, 'There is not template for method %s!' % [method] if !self.templates.has_key? method
       view = Tenjin::Engine.new().render(self.templates[method][context[:soap_version]], context)
       # TODO log puts '%s\n\t%s' % [method, view]
       view
     end
+
+
 
     # Sends a SOAP request to a web service.
     #
@@ -50,7 +54,9 @@ class One::EmailDirect::Facade
       context[:soap_version] ||= 11 # by default use SOAP 1.1
       # TODO validate versions
       # TODO log method and context
-      client = One::EmailDirect::Client.new context[:soap_action]
+      action = context.has_key?(:soap_action) ? context[:soap_action] : nil
+      client = One::EmailDirect::Client.new
+      client.http.headers['SOAPAction'] = action
       response = client.request method do |soap|
         soap.xml = create_soap_envelope(method, context)
         # TODO log soap envelope @ debug level
