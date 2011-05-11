@@ -1,7 +1,6 @@
 require 'rubygems'
-#require 'erubis'
-require 'steenzout-cfg'
 require 'savon'
+require 'steenzout-cfg'
 require 'tenjin'
 
 

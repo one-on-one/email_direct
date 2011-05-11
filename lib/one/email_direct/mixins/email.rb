@@ -103,24 +103,31 @@ module One::EmailDirect::Mixins::EmailFacade
   #
   # http://dev.emaildirect.com/v1/api.asmx?op=Email_GetProperties
   #
-  # @return [Hash]  TODO {:description=>"a description.", :element_name=>"name12353", :element_id=>"170"}
+  # @return [Hash] Example:
+  #                {:date_stamp=>#<DateTime: 1768098599/720,0,2299161>, :ip_address=>nil, :status=>"Active",
+  #                 :publications=>{:element=>{:element_id=>"579",
+  #                 :description=>"descriptionf43123305dc9012e06f234159e028042",
+  #                 :element_name=>"namef43123305dc9012e06f234159e028042"}}, :lists=>{:element=>{:element_id=>"622",
+  #                 :description=>"descriptionf43123305dc9012e06f234159e028042",
+  #                 :element_name=>"namef43123305dc9012e06f234159e028042"}},
+  #                 :email=>"john.doe.f43123305dc9012e06f234159e028042@1on1.com", :email_id=>"108",
+  #                 :custom_fields=>{:custom_field=>[{:value=>"john.doe.f43123305dc9012e06f234159e028042@1on1.com",
+  #                 :field_name=>"Email"}, {:value=>nil, :field_name=>"IPAddress"}, {:value=>"5/10/2011",
+  #                 :field_name=>"DateStamp"}, {:value=>"John", :field_name=>"FirstName"},
+  #                 {:value=>"Doe", :field_name=>"LastName"}, {:value=>"30", :field_name=>"Age"}]},
+  #                 :create_date=>#<DateTime: 1768098599/720,0,2299161>, :source=>{:element_id=>"452",
+  #                 :description=>"descriptionf43123305dc9012e06f234159e028042",
+  #                 :element_name=>"namef43123305dc9012e06f234159e028042"}}
+  #
   #
   def email_getproperties(credentials, email)
-    response = send_soap(
+    send_soap(
       :email_get_properties,
       {:soap_action => 'http://espapi.net/v1/Email_GetProperties',
         :credentials => credentials,
         :email => email
       }
     )
-
-    p response
-
-    return response
-
-    # if it only has one element (Hash) you have to transform it to a single array element
-    return [response[:element]] if response[:element].instance_of? Hash
-
   end
 
 end
