@@ -53,10 +53,10 @@ module One::EmailDirect::Mixins::EmailFacade
   #
   # http://dev.emaildirect.com/v1/api.asmx?op=Email_AddWithFields
   #
-  def email_add_with_fields(credentials, email, source_id, publications, lists, autoresponder=0, force=false, custom_fields={})
+  def email_addwithfields(credentials, email, source_id, publications, lists, autoresponder=0, force=false, custom_fields={})
     # TODO: validate mandatory arguments and raise ArgumentError
     response = send_soap(
-      :email_addwithfields,
+      :email_add_with_fields,
       {:soap_action => 'http://espapi.net/v1/Email_AddWithFields',
         :credentials => credentials,
         :email => email,
@@ -107,14 +107,14 @@ module One::EmailDirect::Mixins::EmailFacade
   #
   def email_getproperties(credentials, email)
     response = send_soap(
-      :email_getproperties,
+      :email_get_properties,
       {:soap_action => 'http://espapi.net/v1/Email_GetProperties',
         :credentials => credentials,
         :email => email
       }
     )
 
-    puts response
+    p response
 
     return response
 
