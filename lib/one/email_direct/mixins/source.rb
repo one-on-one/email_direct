@@ -64,7 +64,7 @@ module One::EmailDirect::Mixins::SourceFacade
   #
   def source_getall(credentials)
     response = send_soap(
-      :source_getall,
+      :source_get_all,
       {:soap_action => 'http://espapi.net/v1/Source_GetAll',
        :credentials => credentials}
     )

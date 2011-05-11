@@ -65,7 +65,7 @@ module One::EmailDirect::Mixins::PublicationFacade
   #
   def publication_getall(credentials)
     response = send_soap(
-      :publication_getall,
+      :publication_get_all,
       {:soap_action => 'http://espapi.net/v1/Publication_GetAll',
        :credentials => credentials}
     )

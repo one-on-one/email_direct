@@ -64,7 +64,7 @@ module One::EmailDirect::Mixins::ListFacade
   #
   def list_getall(credentials)
     response = send_soap(
-      :list_getall,
+      :list_get_all,
       {:soap_action => 'http://espapi.net/v1/List_GetAll',
        :credentials => credentials}
     )
