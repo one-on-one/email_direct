@@ -5,21 +5,21 @@
 
       <Email>${ @email }</Email>
       <SourceID>${ @source_id }</SourceID>
-      <?rb if !@publications.empty? ?>
+      <?rb if !@publications.nil? and !@publications.empty? ?>
       <Publications>
         <?rb for publication in @publications ?>
         <int>${ publication }</int>
         <?rb end  ?>
       </Publications>
       <?rb end ?>
-      <?rb if !@lists.empty? ?>
+      <?rb if !@lists.nil? and !@lists.empty? ?>
       <Lists>
         <?rb for list in @lists ?>
         <int>${ list }</int>
         <?rb end  ?>
       </Lists>
       <?rb end ?>
-      <AutoResponderID>${ @autoresponder_id }</AutoResponderID>
+      <AutoResponderID>${ @autoresponder }</AutoResponderID>
       <Force>${ @force }</Force>
     </Email_Add>
 

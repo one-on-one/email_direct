@@ -16,7 +16,7 @@ module One::EmailDirect::Mixins::SourceFacade
         :source_name => name,
         :source_description => description}
     )
-    raise StandardError, response[:message] if response[:code] != '0'
+    raise StandardError, '[%s] %s' % [response[:code], response[:message]] if response[:code] != '0'
   end
 
 
@@ -35,7 +35,7 @@ module One::EmailDirect::Mixins::SourceFacade
         :credentials => credentials,
         :source_id => source_id}
     )
-    raise StandardError, response[:message] if response[:code] != '0'
+    raise StandardError, '[%s] %s' % [response[:code], response[:message]] if response[:code] != '0'
   end
 
 

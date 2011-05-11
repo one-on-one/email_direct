@@ -16,7 +16,7 @@ module One::EmailDirect::Mixins::PublicationFacade
         :publication_name => name,
         :publication_description => description}
     )
-    raise StandardError, response[:message] if response[:code] != '0'
+    raise StandardError, '[%s] %s' % [response[:code], response[:message]] if response[:code] != '0'
   end
 
 
@@ -35,7 +35,7 @@ module One::EmailDirect::Mixins::PublicationFacade
         :credentials => credentials,
         :publication_id => publication_id}
     )
-    raise StandardError, response[:message] if response[:code] != '0'
+    raise StandardError, '[%s] %s' % [response[:code], response[:message]] if response[:code] != '0'
   end
 
 
