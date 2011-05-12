@@ -121,13 +121,31 @@ module One::EmailDirect::Mixins::EmailFacade
   #
   #
   def email_getproperties(credentials, email)
-    send_soap(
+    response = send_soap(
       :email_get_properties,
       {:soap_action => 'http://espapi.net/v1/Email_GetProperties',
         :credentials => credentials,
         :email => email
       }
     )
+
+    if !response.nil?
+      # make response consistent
+      if !response[:lists].nil?
+        lists = response[:lists][:element]
+        response[:lists][:element] = [lists] if lists.instance_of? Hash
+      else
+        response[:lists] = {:element => []}
+      end
+
+      if !response[:publications].nil?
+        publications = response[:publications][:element]
+        response[:publications][:element] = [publications] if publications.instance_of? Hash
+      else
+        response[:publications] = {:element => []}
+      end
+    end
+    response
   end
 
 end

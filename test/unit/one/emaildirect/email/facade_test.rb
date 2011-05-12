@@ -212,8 +212,8 @@ class TestEmailFacade < Test::Unit::TestCase
     )
     expected = {
      :status => 'Active',
-     :publications => {:element => @publication1},
-     :lists => {:element => @list1},
+     :publications => {:element => [@publication1]},
+     :lists => {:element => [@list1]},
      :email => @email1,
      :custom_fields => {:custom_field => @expected_custom_fields1},
      :source => @source1
@@ -250,7 +250,6 @@ class TestEmailFacade < Test::Unit::TestCase
 
 
     # 1.3.1
-    puts "@email3=#{@email3}"
     assert_nil One::EmailDirect::Facade.email_addwithfields(
         @credentials, @email3,
         @source1[:element_id],
@@ -266,8 +265,8 @@ class TestEmailFacade < Test::Unit::TestCase
     )
     expected = {
      :status => 'Active',
-     :publications => {:element => @publication1},
-     :lists => nil,
+     :publications => {:element => [@publication1]},
+     :lists => {:element => []},
      :email => @email3,
      :custom_fields => {:custom_field => @expected_custom_fields1},
      :source => @source1
@@ -291,8 +290,8 @@ class TestEmailFacade < Test::Unit::TestCase
     )
     expected = {
      :status => 'Active',
-     :publications => {:element => @publication1},
-     :lists => nil,
+     :publications => {:element => [@publication1]},
+     :lists => {:element => []},
      :email => @email4,
      :custom_fields => {:custom_field => @expected_custom_fields1},
      :source => @source1
@@ -316,8 +315,8 @@ class TestEmailFacade < Test::Unit::TestCase
     )
     expected = {
      :status => 'Active',
-     :publications => nil,
-     :lists => {:element => @list1},
+     :publications => {:element => []},
+     :lists => {:element => [@list1]},
      :email => @email5,
      :custom_fields => {:custom_field => @expected_custom_fields1},
      :source => @source1
@@ -341,8 +340,8 @@ class TestEmailFacade < Test::Unit::TestCase
     )
     expected = {
      :status => 'Active',
-     :publications => nil,
-     :lists => {:element => @list1},
+     :publications => {:element => []},
+     :lists => {:element => [@list1]},
      :email => @email6,
      :custom_fields => {:custom_field => @expected_custom_fields1},
      :source => @source1
@@ -377,8 +376,8 @@ class TestEmailFacade < Test::Unit::TestCase
     )
     expected = {
      :status => 'Active',
-     :publications => {:element => @publication1},
-     :lists => {:element => @list1},
+     :publications => {:element => [@publication1]},
+     :lists => {:element => [@list1]},
      :email => @email1,
      :custom_fields => {:custom_field => @expected_custom_fields1},
      :source => @source1
