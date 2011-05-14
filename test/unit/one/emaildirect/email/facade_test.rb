@@ -420,9 +420,9 @@ class TestEmailFacade < Test::Unit::TestCase
   def test_email_getproperties()
 
     # 1.
-    assert_raises StandardError do
+    assert_raises Savon::SOAP::Fault do
       One::EmailDirect::Facade.email_getproperties(
-        @credentials, @email1
+        @credentials, @email7
       )
     end
   end
