@@ -46,6 +46,7 @@ module One::EmailDirect::Mixins::PublicationFacade
   # @param name [String] the name of the publication.
   #
   # @return [Hash] a hash that describes the publication.
+  #                {:element_id => 'id', :element_name => 'name', :description => 'description'}
   #
   def publication_get(credentials, name)
     publication_getall(credentials).each {|element| return element if element[:element_name] == name}

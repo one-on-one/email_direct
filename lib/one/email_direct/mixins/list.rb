@@ -46,6 +46,7 @@ module One::EmailDirect::Mixins::ListFacade
   # @param name [String] the name of the list.
   #
   # @return [Hash] a hash that describes the list.
+  #                {:element_id => 'id', :element_name => 'name', :description => 'description'}
   #
   def list_get(credentials, name)
     list_getall(credentials).each {|element| return element if element[:element_name] == name}
@@ -60,7 +61,7 @@ module One::EmailDirect::Mixins::ListFacade
   #
   # http://dev.emaildirect.com/v1/api.asmx?op=List_GetAll
   #
-  # @return [Hash]  TODO {:description=>"a description.", :element_name=>"name12353", :element_id=>"170"}
+  # @return [Array] [{:element_id => 'id', :element_name => 'name', :description => 'description'}]
   #
   def list_getall(credentials)
     response = send_soap(

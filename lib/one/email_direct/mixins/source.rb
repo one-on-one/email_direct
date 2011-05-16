@@ -46,6 +46,7 @@ module One::EmailDirect::Mixins::SourceFacade
   # @param name [String] the name of the source.
   #
   # @return [Hash] a hash that describes the source.
+  #                {:element_id => 'id', :element_name => 'name', :description => 'description'}
   #
   def source_get(credentials, name)
     source_getall(credentials).each {|element| return element if element[:element_name] == name}
