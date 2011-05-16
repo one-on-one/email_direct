@@ -60,7 +60,7 @@ module One::EmailDirect::Mixins::SourceFacade
   #
   # http://dev.emaildirect.com/v1/api.asmx?op=source_GetAll
   #
-  # @return [Hash]  TODO {:description=>"a description.", :element_name=>"name12353", :element_id=>"170"}
+  # @return [Array] [{:element_id => 'id', :element_name => 'name', :description => 'description'}]
   #
   def source_getall(credentials)
     response = send_soap(
