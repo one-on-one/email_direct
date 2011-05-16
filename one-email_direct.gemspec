@@ -2,7 +2,7 @@ require 'rake'
 
 spec = Gem::Specification.new do |s|
 
-  s.name         = 'one-eis-tools'
+  s.name         = 'one-email_direct'
   s.version      = '0.6'
 
   s.authors      = ['Pedro Salgado']
