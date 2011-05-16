@@ -3,7 +3,7 @@ require 'rake'
 spec = Gem::Specification.new do |s|
 
   s.name         = 'one-email_direct'
-  s.version      = '0.6'
+  s.version      = '0.6.2'
 
   s.authors      = ['Pedro Salgado']
   s.email        = ['pedro.salgado@1on1.com']
@@ -22,7 +22,7 @@ EOF
 
 
   s.require_path = 'lib'
-  s.files        = FileList["{lib}/**/*"].to_a
+  s.files        = FileList["{lib}/**/*"].to_a + ['lib/emaildirect.wsdl', 'lib/emaildirect.secure.wsdl']
   s.test_files   = FileList["{test}/**/*test.rb"].to_a
 
 
