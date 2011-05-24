@@ -29,9 +29,3 @@ configuration_file = 'config/development.yaml' # default
 configuration_file = ENV['ONE_CONFIG'] if ENV.has_key? 'ONE_CONFIG'
 
 Steenzout::ConfigurationManager.load configuration_file
-
-Savon.configure do |config|
-#  config.log = false            # disable logging
-#  config.log_level = :info      # changing the log level
-#  config.logger = Rails.logger  # using the Rails logger
-end

@@ -3,7 +3,7 @@ require 'rake'
 spec = Gem::Specification.new do |s|
 
   s.name         = 'one-email_direct'
-  s.version      = '0.6.2'
+  s.version      = '0.6.6'
 
   s.authors      = ['Pedro Salgado']
   s.email        = ['pedro.salgado@1on1.com']
