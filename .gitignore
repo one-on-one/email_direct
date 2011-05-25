@@ -7,3 +7,7 @@
 **/**/production.yaml
 **/**/*.tch
 **/**/*.rbxml.cache
+*rbxml.cache
+/Gemfile.lock
+/.idea/
+/.bundle/
