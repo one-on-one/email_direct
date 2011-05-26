@@ -62,7 +62,7 @@ class TestListFacade < Test::Unit::TestCase
 
 
     # 2. create a new list with a previously used name
-    assert_raises StandardError do
+    assert_raises One::EmailDirect::EmailDirectException do
       One::EmailDirect::Facade.list_add(@credentials, @list_add[:name], @list_add[:description])
     end
   end

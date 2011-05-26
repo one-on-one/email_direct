@@ -60,7 +60,7 @@ class TestPublicationFacade < Test::Unit::TestCase
 
 
     # 2. create a new publication with a previously used name
-    assert_raises StandardError do
+    assert_raises One::EmailDirect::EmailDirectException do
       One::EmailDirect::Facade.publication_add(@credentials, @publication_add[:name], @publication_add[:description])
     end
   end

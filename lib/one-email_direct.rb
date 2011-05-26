@@ -17,6 +17,7 @@ module One
 
     autoload :Client, "#{File.dirname(__FILE__)}/one/email_direct/client"
     autoload :Credentials, "#{File.dirname(__FILE__)}/one/email_direct/credentials"
+    autoload :EmailDirectException, "#{File.dirname(__FILE__)}/one/email_direct/exception"
     autoload :Facade, "#{File.dirname(__FILE__)}/one/email_direct/facade"
 
   end

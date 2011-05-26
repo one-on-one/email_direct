@@ -61,7 +61,7 @@ class TestSourceFacade < Test::Unit::TestCase
 
 
     # 2. create a new source with a previously used name
-    assert_raises StandardError do
+    assert_raises One::EmailDirect::EmailDirectException do
       One::EmailDirect::Facade.source_add(@credentials, @source_add[:name], @source_add[:description])
     end
   end

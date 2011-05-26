@@ -29,7 +29,7 @@ module One::EmailDirect::Mixins::EmailFacade
         :force => force
       }
     )
-    raise StandardError, '[%s] %s' % [response[:code], response[:message]] if response[:code] != '0'
+    raise One::EmailDirect::EmailDirectException.new(response[:code], response[:message]) if response[:code] != '0'
   end
 
 
@@ -68,7 +68,7 @@ module One::EmailDirect::Mixins::EmailFacade
         :custom_fields => custom_fields
       }
     )
-    raise StandardError, '[%s] %s' % [response[:code], response[:message]] if response[:code] != '0'
+    raise One::EmailDirect::EmailDirectException.new(response[:code], response[:message]) if response[:code] != '0'
   end
 
 
@@ -92,7 +92,7 @@ module One::EmailDirect::Mixins::EmailFacade
         :force => force
       }
     )
-    raise StandardError, '[%s] %s' % [response[:code], response[:message]] if response[:code] != '0'
+    raise One::EmailDirect::EmailDirectException.new(response[:code], response[:message]) if response[:code] != '0'
   end
 
 

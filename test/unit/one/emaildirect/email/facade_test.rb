@@ -56,23 +56,23 @@ class TestEmailFacade < Test::Unit::TestCase
     @custom_fields1 = {
       'FirstName' => 'John',
       'LastName' => 'Doe',
-      'Age' => 30
+      'Birthyear' => 1981
     }
     @custom_fields2 = {
       'FirstName' => 'Johny',
       'LastName' => 'Doey',
-      'Age' => 31
+      'Birthyear' => 1980
     }
 
     @expected_custom_fields1 = [
       {:value => 'John',  :field_name => 'FirstName'},
       {:value => 'Doe',   :field_name => 'LastName'},
-      {:value => '30',    :field_name => 'Age'}
+      {:value => '1981',    :field_name => 'Birthyear'}
     ]
     @expected_custom_fields2 = [
       {:value => 'Johny',  :field_name => 'FirstName'},
       {:value => 'Doey',   :field_name => 'LastName'},
-      {:value => '31',    :field_name => 'Age'}
+      {:value => '1980',    :field_name => 'Birthyear'}
     ]
   end
 
@@ -176,7 +176,7 @@ class TestEmailFacade < Test::Unit::TestCase
 
 
     # 1.6
-    assert_raises StandardError do
+    assert_raises One::EmailDirect::EmailDirectException do
       One::EmailDirect::Facade.email_add(
         @credentials, nil,
         @source1[:element_id], [@publication1[:element_id]], [@list1[:element_id]],
@@ -361,7 +361,7 @@ class TestEmailFacade < Test::Unit::TestCase
 
 
     # 1.5
-    assert_raises StandardError do
+    assert_raises One::EmailDirect::EmailDirectException do
       One::EmailDirect::Facade.email_addwithfields(
         @credentials, nil,
         @source1[:element_id], [@publication1[:element_id]], [@list1[:element_id]],
