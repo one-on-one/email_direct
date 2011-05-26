@@ -91,6 +91,28 @@ class TestEmailFacade < Test::Unit::TestCase
     }
   end
 
+
+
+  # Removes dynamic properties for a Email_GetProperties output.
+  #
+  # @param result [Hash] the output to be cleaned.
+  # @return [Hash] filtered output.
+  #
+  def clean_email_getproperties(result)
+    result.delete(:create_date)
+    result.delete(:date_stamp)
+    result.delete(:ip_address)
+    result.delete(:email_id)
+    cleaned_custom_fields = []
+    result[:custom_fields][:custom_field].each { |element|
+      cleaned_custom_fields << element if !element[:field_name].eql? 'DateStamp' and !element[:field_name].eql? 'IPAddress'
+    }
+    result[:custom_fields][:custom_field] = cleaned_custom_fields
+    result
+  end
+
+
+
   # Tests for One::EmailDirect::Facade.email_add.
   #
   # 1. create a new email
@@ -171,18 +193,6 @@ class TestEmailFacade < Test::Unit::TestCase
     )
   end
 
-  def clean_email_getproperties(result)
-    result.delete(:create_date)
-    result.delete(:date_stamp)
-    result.delete(:ip_address)
-    result.delete(:email_id)
-    cleaned_custom_fields = []
-    result[:custom_fields][:custom_field].each { |element|
-      cleaned_custom_fields << element if !element[:field_name].eql? 'DateStamp' and !element[:field_name].eql? 'IPAddress'
-    }
-    result[:custom_fields][:custom_field] = cleaned_custom_fields
-    return result
-  end
 
 
   # Tests for One::EmailDirect::Facade.email_add_with_fields.
