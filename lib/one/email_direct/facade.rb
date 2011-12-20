@@ -1,3 +1,7 @@
+# Facade to interact with EmailDirect web services.
+#
+# @author: Pedro Salgado <pedro.salgado@1on1.com>
+#
 class One::EmailDirect::Facade
   extend One::EmailDirect::Mixins::EmailFacade
   extend One::EmailDirect::Mixins::ListFacade
@@ -8,7 +12,7 @@ class One::EmailDirect::Facade
 
   private
 
-    # Loads the SOAP envelope templates.
+    # Loads the SOAP message templates.
     def self.load_templates()
       @templates ||= {}
       root_directory = File.dirname(__FILE__)
@@ -32,7 +36,14 @@ class One::EmailDirect::Facade
 
 
 
-    def self.create_soap_envelope(method, context)
+    # Returns the SOAP message to be sent to EmailDirect.
+    #
+    # @param method [String] the symbol that represents the web service to contact.
+    # @param context [Hash] a series of key value pairs to build up the request.
+    #
+    # @return [String] the SOAP message.
+    #
+    def self.create_soap_message(method, context)
       raise StandardError, 'There is not template for method %s!' % [method] if !self.templates.has_key? method
       view = Tenjin::Engine.new().render(self.templates[method][context[:soap_version]], context)
       # TODO log puts '%s\n\t%s' % [method, view]
@@ -41,7 +52,7 @@ class One::EmailDirect::Facade
 
 
 
-    # Sends a SOAP request to a web service.
+    # Sends a SOAP request to the EmailDirect web services.
     #
     # @param method [String] the symbol that represents the web service to contact.
     # @param context [Hash] a series of key value pairs to build up the request.
@@ -58,7 +69,7 @@ class One::EmailDirect::Facade
       client = One::EmailDirect::Client.new action
       #client.http.headers['SOAPAction'] = action
       response = client.request method do |soap|
-        soap.xml = create_soap_envelope(method, context)
+        soap.xml = create_soap_message(method, context)
         # TODO log soap envelope @ debug level
       end
 
